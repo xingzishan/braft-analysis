@@ -1,0 +1,10 @@
+**EndPoint**: IP+PORT表示一个EndPoint
+**PeerId**: EndPoint + index，当一台服务器上有多个PeerId，可以通过index来区分
+**NodeId**: PeerId + GroupId，GroupId相同的属于同一个raft组
+**Configuration**: PeerId集合，一般用于表示属于同一个raft组的PeerId
+**Node**: 表示一个raft节点
+**LogId**: Log对应的index和term
+**LogEntry**: 对应一条raft日志
+**Task**: 基本消息数据结构，客户端的指令apply到braft时就是封装成Task
+**Closure**: 
+**Ballot**: 选举投票，根据Configuration设置初始的quorum为一半的成员+1，收到一张投票quorum减一，当quorum <= 0时表示投票成功
