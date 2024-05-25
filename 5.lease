@@ -1,7 +1,7 @@
 租约分为leader租约和follower租约
 
 
-###leader租约
+### leader租约
 - leader租约与election_timeout_ms时间一致
 - 当选为leader后或者transfer leader到其它节点失败会执行on_leader_start，该函数自增leader租约的epoch以及设置term，但last_active_timestamp仍然为0，此时的leader租约状态为NOT_READY
 - 当leader step_down到follower状态或者transfer leader到其它节点则leader租约执行on_leader_stop重置
@@ -10,5 +10,5 @@
 - leader租约不会定时更新，是用户调用get_leader_lease_status函数时如果发现leader租约处于SUSPECT状态(当前时间大于last_active_timestamp+election_timeout_ms)，则会重新设置leader租约，即按需更新leader租约
 
 
-###follower租约
+### follower租约
 follower lease = election_timeout_ms + max_clock_drift_ms
